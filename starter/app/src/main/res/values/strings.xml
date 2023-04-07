@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Political Preparedness</string>
 
-    <!-- TODO: Add necessary string values -->
-
+<!--    Permission alert-->
+    <string name="permission_location_alert_title">Location Permission Needed</string>
+    <string name="permission_location_alert_message">This app needs the location permission, please accept to use location functionality!</string>
 </resources>

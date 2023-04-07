@@ -1,21 +1,20 @@
 package com.example.android.politicalpreparedness.election
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import com.example.android.politicalpreparedness.R
+import com.example.android.politicalpreparedness.core.BaseFragment
+import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
 
-class ElectionsFragment: Fragment() {
+class ElectionsFragment: BaseFragment<FragmentElectionBinding, ElectionsViewModel>(R.layout.fragment_election) {
 
-    //TODO: Declare ViewModel
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-
+    override fun initViewModel() {
         //TODO: Add ViewModel values and create ViewModel
+    }
 
+    override fun initObserver() {}
+
+    override fun initAction() {}
+
+    override fun initView() {
         //TODO: Add binding values
 
         //TODO: Link elections to voter info
@@ -23,7 +22,6 @@ class ElectionsFragment: Fragment() {
         //TODO: Initiate recycler adapters
 
         //TODO: Populate recycler adapters
-
     }
 
     //TODO: Refresh adapters when fragment loads

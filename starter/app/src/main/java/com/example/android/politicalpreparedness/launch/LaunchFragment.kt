@@ -1,36 +1,28 @@
 package com.example.android.politicalpreparedness.launch
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModel
 import com.example.android.politicalpreparedness.R
+import com.example.android.politicalpreparedness.core.BaseFragment
 import com.example.android.politicalpreparedness.databinding.FragmentLaunchBinding
-import com.example.android.politicalpreparedness.election.adapter.ElectionListAdapter
-import com.example.android.politicalpreparedness.election.adapter.ElectionListener
 
-class LaunchFragment : Fragment() {
+class LaunchFragment : BaseFragment<FragmentLaunchBinding, ViewModel>(R.layout.fragment_launch) {
+    override fun initViewModel() {}
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val binding = FragmentLaunchBinding.inflate(inflater)
-        binding.lifecycleOwner = this
+    override fun initObserver() {}
 
-        binding.representativeButton.setOnClickListener { navToRepresentatives() }
-        binding.upcomingButton.setOnClickListener { navToElections() }
-
-        return binding.root
+    override fun initAction() {
+//        binding.representativeButton.setOnClickListener { navToRepresentatives() }
+//        binding.upcomingButton.setOnClickListener { navToElections() }
     }
 
+    override fun initView() {}
+
     private fun navToElections() {
-        this.findNavController().navigate(LaunchFragmentDirections.actionLaunchFragmentToElectionsFragment())
+//        this.findNavController().navigate(LaunchFragmentDirections.actionLaunchFragmentToElectionsFragment())
     }
 
     private fun navToRepresentatives() {
-        this.findNavController().navigate(LaunchFragmentDirections.actionLaunchFragmentToRepresentativeFragment())
+//        this.findNavController().navigate(LaunchFragmentDirections.actionLaunchFragmentToRepresentativeFragment())
     }
 
 }

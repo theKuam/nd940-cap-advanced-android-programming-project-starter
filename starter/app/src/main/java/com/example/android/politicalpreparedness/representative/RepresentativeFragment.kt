@@ -1,53 +1,68 @@
 package com.example.android.politicalpreparedness.representative
 
+import android.Manifest
 import android.content.Context
 import android.location.Geocoder
 import android.location.Location
-import android.os.Bundle
+import android.os.Build
 import android.view.*
 import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.Fragment
+import androidx.activity.result.contract.ActivityResultContracts
+import com.example.android.politicalpreparedness.R
+import com.example.android.politicalpreparedness.core.BaseFragment
+import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.network.models.Address
 import java.util.Locale
 
-class DetailFragment : Fragment() {
+class RepresentativeFragment :
+    BaseFragment<FragmentRepresentativeBinding, RepresentativeViewModel>(R.layout.fragment_representative) {
 
     companion object {
-        //TODO: Add Constant for Location request
+        private const val MY_PERMISSIONS_REQUEST_LOCATION = 666
     }
 
-    //TODO: Declare ViewModel
+    override fun initViewModel() {
+        //TODO: Declare ViewModel
+    }
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun initObserver() {}
 
-        //TODO: Establish bindings
+    override fun initAction() {
+        requestLocationPermissions()
+
+        //TODO: Establish button listeners for field and location search
+    }
+
+    private fun requestLocationPermissions() {
+        locationPermissionRequest.launch(
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        )
+    }
+
+    override fun initView() {
 
         //TODO: Define and assign Representative adapter
 
         //TODO: Populate Representative adapter
-
-        //TODO: Establish button listeners for field and location search
-
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        //TODO: Handle location permission result to get location on permission granted
-    }
+    private val locationPermissionRequest = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        when {
+            permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
 
-    private fun checkLocationPermissions(): Boolean {
-        return if (isPermissionGranted()) {
-            true
-        } else {
-            //TODO: Request Location permissions
-            false
+            }
+            permissions.getOrDefault(Manifest.permission.ACCESS_BACKGROUND_LOCATION, false) -> {
+
+            }
+            else -> {
+
+            }
         }
-    }
-
-    private fun isPermissionGranted() : Boolean {
-        //TODO: Check if permission is already granted and return (true = granted, false = denied/other)
     }
 
     private fun getLocation() {
@@ -55,18 +70,49 @@ class DetailFragment : Fragment() {
         //TODO: The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
     }
 
-    private fun geoCodeLocation(location: Location): Address {
-        val geocoder = Geocoder(context, Locale.getDefault())
-        return geocoder.getFromLocation(location.latitude, location.longitude, 1)
-                .map { address ->
-                    Address(address.thoroughfare, address.subThoroughfare, address.locality, address.adminArea, address.postalCode)
+    @Suppress("DEPRECATION")
+    private fun geoCodeLocation(location: Location): Address? {
+        var returnAddress: Address? = null
+        context?.let {
+            val geocoder = Geocoder(it, Locale.getDefault())
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                geocoder.getFromLocation(
+                    location.latitude,
+                    location.longitude,
+                    1
+                ) { addressList ->
+                    returnAddress = addressList.map { address ->
+                        Address(
+                            address.thoroughfare,
+                            address.subThoroughfare,
+                            address.locality,
+                            address.adminArea,
+                            address.postalCode
+                        )
+                    }.first()
                 }
-                .first()
+            } else {
+                returnAddress = geocoder.getFromLocation(
+                    location.latitude,
+                    location.longitude,
+                    1)
+                    ?.map { address ->
+                        Address(
+                            address.thoroughfare,
+                            address.subThoroughfare,
+                            address.locality,
+                            address.adminArea,
+                            address.postalCode
+                        )
+                    }?.first()
+            }
+        }
+        return returnAddress
     }
 
     private fun hideKeyboard() {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 
 }
