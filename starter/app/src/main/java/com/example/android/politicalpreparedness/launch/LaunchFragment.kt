@@ -1,28 +1,33 @@
 package com.example.android.politicalpreparedness.launch
 
-import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.findNavController
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.core.BaseFragment
 import com.example.android.politicalpreparedness.databinding.FragmentLaunchBinding
 
-class LaunchFragment : BaseFragment<FragmentLaunchBinding, ViewModel>(R.layout.fragment_launch) {
-    override fun initViewModel() {}
+class LaunchFragment : BaseFragment<FragmentLaunchBinding>(R.layout.fragment_launch) {
 
     override fun initObserver() {}
 
     override fun initAction() {
-//        binding.representativeButton.setOnClickListener { navToRepresentatives() }
-//        binding.upcomingButton.setOnClickListener { navToElections() }
+        binding.apply {
+            btnUpcomingElections.setOnClickListener {
+                navToElections()
+            }
+            btnFindMyRepresentatives.setOnClickListener {
+                navToLogin()
+            }
+        }
     }
 
     override fun initView() {}
 
     private fun navToElections() {
-//        this.findNavController().navigate(LaunchFragmentDirections.actionLaunchFragmentToElectionsFragment())
+        this.findNavController().navigate(LaunchFragmentDirections.actionLaunchFragmentToElectionsFragment())
     }
 
-    private fun navToRepresentatives() {
-//        this.findNavController().navigate(LaunchFragmentDirections.actionLaunchFragmentToRepresentativeFragment())
+    private fun navToLogin() {
+        this.findNavController().navigate(LaunchFragmentDirections.actionLaunchFragmentToLoginFragment())
     }
 
 }

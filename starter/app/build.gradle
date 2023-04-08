@@ -4,6 +4,7 @@ apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 33
@@ -66,7 +67,11 @@ dependencies {
     implementation "com.squareup.moshi:moshi-adapters:$version_moshi"
 
     // Glide
-    //TODO: Add Glide Implementation
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+
+    // Koin
+    implementation "io.insert-koin:koin-core:$version_koin"
+    implementation "io.insert-koin:koin-android:$version_koin"
 
     //Room
     implementation "androidx.room:room-runtime:$version_room"
@@ -74,4 +79,17 @@ dependencies {
 
     // Location
     implementation "com.google.android.gms:play-services-location:$version_play_services_location"
+
+    // FirebaseUI
+    implementation platform('com.google.firebase:firebase-bom:31.3.0')
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+    implementation "com.google.android.gms:play-services-auth:20.4.1"
+
+    //noinspection GradleDependency
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    //noinspection GradleDependency
+    implementation 'com.google.android.material:material:1.6.0'
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 }

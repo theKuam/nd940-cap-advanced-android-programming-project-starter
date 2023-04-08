@@ -15,22 +15,29 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btnUpcomingElections"
+            app:layout_constraintBottom_toTopOf="@id/tvLoginBenefit"
             android:src="@drawable/ballot_logo"
             android:contentDescription="@string/ballot_logo" />
 
-        <Button
-            android:id="@+id/btnUpcomingElections"
-            style="@style/MyButton"
-            android:text="@string/upcoming_elections"
-            app:layout_constraintStart_toStartOf="@id/ivBallotLogo"
-            app:layout_constraintEnd_toEndOf="@id/ivBallotLogo"
-            app:layout_constraintBottom_toTopOf="@id/btnFindMyRepresentatives"/>
+        <TextView
+            android:id="@+id/tvLoginBenefit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/large_margin"
+            android:text="@string/login_benefit"
+            android:textSize="@dimen/large_text_size"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintTop_toBottomOf="@id/ivBallotLogo"
+            app:layout_constraintBottom_toTopOf="@id/btnLogin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
-            android:id="@+id/btnFindMyRepresentatives"
+            android:id="@+id/btnLogin"
             style="@style/MyButton"
-            android:text="@string/find_my_representatives"
+            android:text="@string/login"
             android:layout_margin="@dimen/default_margin"
             app:layout_constraintStart_toStartOf="@id/ivBallotLogo"
             app:layout_constraintEnd_toEndOf="@id/ivBallotLogo"

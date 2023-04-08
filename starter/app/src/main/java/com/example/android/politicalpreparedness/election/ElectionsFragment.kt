@@ -3,12 +3,11 @@ package com.example.android.politicalpreparedness.election
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.core.BaseFragment
 import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ElectionsFragment: BaseFragment<FragmentElectionBinding, ElectionsViewModel>(R.layout.fragment_election) {
+class ElectionsFragment: BaseFragment<FragmentElectionBinding>(R.layout.fragment_election) {
 
-    override fun initViewModel() {
-        //TODO: Add ViewModel values and create ViewModel
-    }
+    private val viewModel by viewModel<ElectionsViewModel>()
 
     override fun initObserver() {}
 

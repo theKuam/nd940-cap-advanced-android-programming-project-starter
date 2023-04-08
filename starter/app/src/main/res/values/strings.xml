@@ -5,4 +5,24 @@
 <!--    Permission alert-->
     <string name="permission_location_alert_title">Location Permission Needed</string>
     <string name="permission_location_alert_message">This app needs the location permission, please accept to use location functionality!</string>
+
+<!--    Screen name-->
+    <string name="representative_screen">My Representatives</string>
+    <string name="login_screen">Login</string>
+    <string name="elections_screen">Elections</string>
+    <string name="voter_info_screen">Voter info</string>
+<!--    Content description-->
+    <string name="ballot_logo">ballot logo</string>
+
+<!--    App text resources-->
+    <string name="upcoming_elections">Upcoming Elections</string>
+    <string name="find_my_representatives">Find my representatives</string>
+    <string name="login">Login</string>
+    <string name="login_benefit">Login to our app to get a full experience and personalize your own app</string>
+    <string name="representative_search">Representative Search</string>
+    <string name="address_1">Address 1</string>
+    <string name="address_2">Address 2</string>
+    <string name="city">City</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="use_my_location">Use my location</string>
 </resources>

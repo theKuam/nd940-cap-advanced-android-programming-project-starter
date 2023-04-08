@@ -12,18 +12,13 @@ import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.core.BaseFragment
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.network.models.Address
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
 class RepresentativeFragment :
-    BaseFragment<FragmentRepresentativeBinding, RepresentativeViewModel>(R.layout.fragment_representative) {
+    BaseFragment<FragmentRepresentativeBinding>(R.layout.fragment_representative) {
 
-    companion object {
-        private const val MY_PERMISSIONS_REQUEST_LOCATION = 666
-    }
-
-    override fun initViewModel() {
-        //TODO: Declare ViewModel
-    }
+    private val viewModel by viewModel<RepresentativeViewModel>()
 
     override fun initObserver() {}
 

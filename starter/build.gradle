@@ -16,6 +16,9 @@ buildscript {
         version_glide = "4.11.0"
         version_play_services_location = "21.0.1"
         version_room = "2.5.1"
+        version_koin = "3.4.0"
+        version_glide = "4.15.1"
+        version_google_service = "4.3.15"
     }
 
     repositories {
@@ -27,6 +30,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$version_kotlin"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$version_navigation"
+        classpath "com.google.gms:google-services:$version_google_service"
     }
 }
 
