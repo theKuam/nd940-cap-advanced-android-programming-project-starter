@@ -1,3 +1,4 @@
 package com.example.android.politicalpreparedness.di
 
-val appModule = repositoryModule + viewModelModule
+val appModule =
+    coroutinesDispatchersModule + networkModule + repositoryModule + useCaseModule + viewModelModule

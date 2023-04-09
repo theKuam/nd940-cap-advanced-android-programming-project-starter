@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="representative"
+            type="com.example.android.politicalpreparedness.model.Representative" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_padding">
+
+        <ImageView
+            android:id="@+id/ivOfficialImage"
+            android:layout_width="@dimen/small_image_size"
+            android:layout_height="@dimen/small_image_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_profile"
+            app:profileImage="@{representative.official.photoUrl}"/>
+
+        <TextView
+            android:id="@+id/txtOffice"
+            style="@style/Label"
+            android:layout_width="0dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{representative.office.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivOfficialImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="Test Office" />
+
+        <TextView
+            android:id="@+id/txtOfficialName"
+            style="@style/Body1"
+            android:text="@{representative.official.name}"
+            app:layout_constraintBottom_toTopOf="@id/txtOfficialParty"
+            app:layout_constraintStart_toEndOf="@id/ivOfficialImage"
+            app:layout_constraintTop_toBottomOf="@id/txtOffice"
+            tool:text="Test Name" />
+
+        <TextView
+            android:id="@+id/txtOfficialParty"
+            style="@style/Body2"
+            android:text="@{representative.official.party}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivOfficialImage"
+            tool:text="Test Party" />
+
+        <ImageView
+            android:id="@+id/ivTwitterUrl"
+            android:layout_width="@dimen/small_social_icon_size"
+            android:layout_height="@dimen/small_social_icon_size"
+            android:layout_margin="@dimen/small_margin"
+            android:src="@drawable/ic_twitter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivFacebookUrl"
+            android:layout_width="@dimen/small_social_icon_size"
+            android:layout_height="@dimen/small_social_icon_size"
+            android:layout_margin="@dimen/small_margin"
+            android:src="@drawable/ic_facebook"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivTwitterUrl" />
+
+        <ImageView
+            android:id="@+id/ivWebsiteUrl"
+            android:layout_width="@dimen/small_social_icon_size"
+            android:layout_height="@dimen/small_social_icon_size"
+            android:layout_margin="@dimen/small_margin"
+            android:src="@drawable/ic_www"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivFacebookUrl" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

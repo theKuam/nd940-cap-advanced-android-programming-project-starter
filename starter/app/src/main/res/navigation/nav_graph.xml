@@ -21,12 +21,12 @@
 
     <fragment
         android:id="@+id/representativeFragment"
-        android:name="com.example.android.politicalpreparedness.representative.RepresentativeFragment"
+        android:name="com.example.android.politicalpreparedness.ui.representative.RepresentativeFragment"
         android:label="@string/representative_screen"
         tools:layout="@layout/fragment_representative" />
     <fragment
         android:id="@+id/voterInfoFragment"
-        android:name="com.example.android.politicalpreparedness.election.VoterInfoFragment"
+        android:name="com.example.android.politicalpreparedness.ui.election.VoterInfoFragment"
         android:label="@string/voter_info_screen">
         <argument
             android:name="arg_election_id"
@@ -37,18 +37,18 @@
     </fragment>
     <fragment
         android:id="@+id/electionsFragment"
-        android:name="com.example.android.politicalpreparedness.election.ElectionsFragment"
+        android:name="com.example.android.politicalpreparedness.ui.election.ElectionsFragment"
         android:label="@string/elections_screen" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.android.politicalpreparedness.login.LoginFragment"
+        android:name="com.example.android.politicalpreparedness.ui.login.LoginFragment"
         android:label="@string/login_screen"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_representativeFragment"
             app:destination="@id/representativeFragment"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/loginFragment"/>
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

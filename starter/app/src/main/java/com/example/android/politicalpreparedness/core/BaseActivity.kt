@@ -7,7 +7,8 @@ import androidx.databinding.ViewDataBinding
 import com.example.android.politicalpreparedness.common.SharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-abstract class BaseActivity<DB: ViewDataBinding>(private val resourceId: Int) : AppCompatActivity() {
+abstract class BaseActivity<DB : ViewDataBinding>(private val resourceId: Int) :
+    AppCompatActivity() {
 
     protected lateinit var binding: DB
     protected val sharedViewModel: SharedViewModel by viewModel()

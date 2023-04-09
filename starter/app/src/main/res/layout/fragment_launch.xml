@@ -12,29 +12,29 @@
             android:id="@+id/ivBallotLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btnUpcomingElections"
+            android:contentDescription="@string/ballot_logo"
             android:src="@drawable/ballot_logo"
-            android:contentDescription="@string/ballot_logo" />
+            app:layout_constraintBottom_toTopOf="@id/btnUpcomingElections"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnUpcomingElections"
             style="@style/MyButton"
             android:text="@string/upcoming_elections"
-            app:layout_constraintStart_toStartOf="@id/ivBallotLogo"
+            app:layout_constraintBottom_toTopOf="@id/btnFindMyRepresentatives"
             app:layout_constraintEnd_toEndOf="@id/ivBallotLogo"
-            app:layout_constraintBottom_toTopOf="@id/btnFindMyRepresentatives"/>
+            app:layout_constraintStart_toStartOf="@id/ivBallotLogo" />
 
         <Button
             android:id="@+id/btnFindMyRepresentatives"
             style="@style/MyButton"
-            android:text="@string/find_my_representatives"
             android:layout_margin="@dimen/default_margin"
-            app:layout_constraintStart_toStartOf="@id/ivBallotLogo"
+            android:text="@string/find_my_representatives"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/ivBallotLogo"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="@id/ivBallotLogo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

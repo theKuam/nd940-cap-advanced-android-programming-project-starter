@@ -12,12 +12,12 @@
             android:id="@+id/ivBallotLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tvLoginBenefit"
+            android:contentDescription="@string/ballot_logo"
             android:src="@drawable/ballot_logo"
-            android:contentDescription="@string/ballot_logo" />
+            app:layout_constraintBottom_toTopOf="@id/tvLoginBenefit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvLoginBenefit"
@@ -25,23 +25,23 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/large_margin"
             android:text="@string/login_benefit"
-            android:textSize="@dimen/large_text_size"
             android:textAlignment="center"
-            android:textStyle="bold"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintTop_toBottomOf="@id/ivBallotLogo"
+            android:textSize="@dimen/large_text_size"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/btnLogin"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/ivBallotLogo" />
 
         <Button
             android:id="@+id/btnLogin"
             style="@style/MyButton"
-            android:text="@string/login"
             android:layout_margin="@dimen/default_margin"
-            app:layout_constraintStart_toStartOf="@id/ivBallotLogo"
+            android:text="@string/login"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/ivBallotLogo"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="@id/ivBallotLogo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

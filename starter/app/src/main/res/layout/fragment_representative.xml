@@ -3,143 +3,190 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:motion="http://schemas.android.com/tools">
 
-    <!-- TODO: Add data binding node -->
+    <data>
 
-    <!-- TODO: Add motion scene to hide form on vertical scroll. -->
-    <androidx.constraintlayout.motion.widget.MotionLayout
+        <variable
+            name="viewModel"
+            type="com.example.android.politicalpreparedness.ui.representative.RepresentativeViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/default_margin"
-        app:layoutDescription="@xml/fragment_representative_scene">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtSearchTitle"
-            style="@style/MyTitle"
-            android:text="@string/representative_search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilAddressLine1"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtSearchTitle">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtAddressLine1"
-                style="@style/MyEditText"
-                android:hint="@string/address_1"
-                android:inputType="textPostalAddress"
-                motion:ignore="TextContrastCheck,VisualLintTextFieldSize" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilAddressLine2"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilAddressLine1">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtAddressLine2"
-                style="@style/MyEditText"
-                android:hint="@string/address_2"
-                android:inputType="textPostalAddress"
-                motion:ignore="TextContrastCheck,VisualLintTextFieldSize" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilCity"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@id/tilState"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilAddressLine2">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/city"
-                style="@style/MyEditText"
-                android:hint="@string/city"
-                android:inputType="textPostalAddress"
-                motion:ignore="TextContrastCheck,VisualLintTextFieldSize" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilState"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/tilCity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tilCity"
-            app:layout_constraintTop_toTopOf="@id/tilCity">
-
-            <Spinner
-                android:id="@+id/spState"
-                style="@style/MyEditText"
-                android:inputType="textPostalAddress"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilZip"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/tilCity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilCity">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtZip"
-                style="@style/MyEditText"
-                android:hint="@string/zip_code"
-                android:inputType="number"
-                android:maxLength="5"
-                motion:ignore="TextContrastCheck,VisualLintTextFieldSize" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- TODO: Add visual styling and label -->
-        <Button
-            android:id="@+id/btnSearch"
-            style="@style/MyButton"
-            android:text="@string/find_my_representatives"
-            app:layout_constraintTop_toBottomOf="@id/tilZip"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            motion:ignore="VisualLintButtonSize" />
-
-        <!-- TODO: Add visual styling and content -->
-        <Button
-            android:id="@+id/btnLocation"
-            style="@style/MyButton"
-            android:text="@string/use_my_location"
-            app:layout_constraintTop_toBottomOf="@id/btnSearch"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            motion:ignore="VisualLintButtonSize" />
-
-        <TextView
-            android:id="@+id/txtMyRepresentativesTitle"
-            style="@style/MyTitle"
-            android:text="@string/representative_screen"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnLocation" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvRepresentativeList"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginVertical="@dimen/default_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtMyRepresentativesTitle" />
+            android:layout_height="wrap_content"
+            android:background="@color/fui_transparent">
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:id="@+id/motionLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/default_margin"
+                android:minHeight="@dimen/toolbar_min_height"
+                app:layoutDescription="@xml/fragment_representative_scene"
+                app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
+
+                <View
+                    android:id="@+id/background"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/formContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/txtSearchTitle"
+                        style="@style/MyTitle"
+                        android:text="@string/representative_search"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilAddressLine1"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtSearchTitle">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtAddressLine1"
+                            style="@style/MyEditText"
+                            android:hint="@string/address_1"
+                            android:inputType="textPostalAddress"
+                            android:text="@{viewModel.address.line1}"
+                            motion:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilAddressLine2"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tilAddressLine1">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtAddressLine2"
+                            style="@style/MyEditText"
+                            android:hint="@string/address_2"
+                            android:inputType="textPostalAddress"
+                            android:text="@{viewModel.address.line2}"
+                            motion:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilCity"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@id/tilState"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tilAddressLine2">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/city"
+                            style="@style/MyEditText"
+                            android:hint="@string/city"
+                            android:inputType="textPostalAddress"
+                            android:text="@{viewModel.address.city}"
+                            motion:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilState"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@id/tilCity"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tilCity"
+                        app:layout_constraintTop_toTopOf="@id/tilCity">
+
+                        <Spinner
+                            android:id="@+id/spState"
+                            style="@style/MyEditText"
+                            android:inputType="textPostalAddress"
+                            app:entries="@{viewModel.states}"
+                            app:stateValue="@{viewModel.state}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilZip"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="@id/tilCity"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tilCity">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtZip"
+                            style="@style/MyEditText"
+                            android:hint="@string/zip_code"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:text="@{viewModel.address.zip}"
+                            motion:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btnSearch"
+                        style="@style/MyButton"
+                        android:text="@string/find_my_representatives"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tilZip"
+                        motion:ignore="VisualLintButtonSize" />
+
+                    <Button
+                        android:id="@+id/btnLocation"
+                        style="@style/MyButton"
+                        android:text="@string/use_my_location"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btnSearch"
+                        motion:ignore="VisualLintButtonSize" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/txtMyRepresentativesTitle"
+                    style="@style/MyTitle"
+                    android:padding="@dimen/default_padding"
+                    android:text="@string/my_representatives"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/formContainer" />
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRepresentatives"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                motion:listitem="@layout/item_representative" />
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import timber.log.Timber
 
-abstract class BaseFragment<DB: ViewDataBinding>(private val resourceId: Int) : Fragment() {
+abstract class BaseFragment<DB : ViewDataBinding>(private val resourceId: Int) : Fragment() {
 
     protected lateinit var binding: DB
     protected val sharedViewModel: SharedViewModel by activityViewModel()
@@ -30,7 +30,7 @@ abstract class BaseFragment<DB: ViewDataBinding>(private val resourceId: Int) : 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = DataBindingUtil
             .inflate(
@@ -68,8 +68,10 @@ abstract class BaseFragment<DB: ViewDataBinding>(private val resourceId: Int) : 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult?) {
         val response = result?.idpResponse
         if (result?.resultCode == Activity.RESULT_OK) {
-            Timber.i("Successfully signed in user " +
-                    "${FirebaseAuth.getInstance().currentUser?.displayName}!")
+            Timber.i(
+                "Successfully signed in user " +
+                        "${FirebaseAuth.getInstance().currentUser?.displayName}!"
+            )
         } else {
             Timber.i("Sign in unsuccessful ${response?.error?.errorCode}")
         }
