@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class RepresentativeViewModel(
     private val getStatesUseCase: GetStatesUseCase,
@@ -28,13 +29,13 @@ class RepresentativeViewModel(
     val representatives: StateFlow<List<Representative>>
         get() = _representatives.asStateFlow()
 
-    private val _address = MutableStateFlow<Address?>(null)
-    val address: StateFlow<Address?>
+    private val _address = MutableStateFlow(Address())
+    val address: StateFlow<Address>
         get() = _address.asStateFlow()
 
     @ExperimentalCoroutinesApi
     val country = _address.mapLatest { address ->
-        address?.country
+        address.country
     }
 
     private val _states = MutableStateFlow<List<String>>(listOf())
@@ -50,7 +51,7 @@ class RepresentativeViewModel(
         get() = _errorMessage
 
     fun useMyLocation(address: Address?) {
-        _address.value = address
+        _address.value = address ?: Address()
     }
 
     fun setState(state: String?) {
@@ -84,16 +85,14 @@ class RepresentativeViewModel(
 
     fun findMyRepresentatives() {
         viewModelScope.launch {
-            address.value?.let {
-                getRepresentativesUseCase.invoke(it.toFormattedString())
-                    .collectLatest { result ->
-                        if (result is Result.Success) {
-                            _representatives.value = result.data
-                        } else if (result is Result.Error) {
-                            _errorMessage.value = result.throwable.message.toString()
-                        }
+            getRepresentativesUseCase.invoke(address.value.toFormattedString())
+                .collectLatest { result ->
+                    if (result is Result.Success) {
+                        _representatives.value = result.data
+                    } else if (result is Result.Error) {
+                        _errorMessage.value = result.throwable.message.toString()
                     }
-            }
+                }
         }
     }
 
@@ -102,24 +101,25 @@ class RepresentativeViewModel(
     }
 
     fun onAddress1Changed(address1: CharSequence) {
-        _address.value?.line1 = address1.toString()
+        Timber.d("HaiNM18 address1")
+        _address.value.line1 = address1.toString()
     }
 
     fun onAddress2Changed(address2: CharSequence) {
-        _address.value?.line2 = address2.toString()
+        _address.value.line2 = address2.toString()
     }
 
     fun onCityChanged(city: CharSequence) {
-        _address.value?.city = city.toString()
+        _address.value.city = city.toString()
     }
 
     fun onZipChanged(zip: CharSequence) {
-        _address.value?.zip = zip.toString()
+        _address.value.zip = zip.toString()
     }
 
     fun onStateChanged(position: Int) {
         _state.value = states.value[position]
-        _address.value?.state = state.value
+        _address.value.state = state.value
     }
 
     fun resetErrorState() {

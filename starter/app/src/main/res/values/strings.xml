@@ -32,4 +32,5 @@
     <string name="ballot_information">Ballot Information</string>
     <string name="follow_election">Follow Election</string>
     <string name="unfollow_election">Unfollow Election</string>
+    <string name="location_required">This is a location-required feature. Please turn it on.</string>
 </resources>

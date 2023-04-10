@@ -161,7 +161,15 @@ class RepresentativeFragment :
                 return@let
             }
             fusedLocationProviderClient.lastLocation.addOnSuccessListener { lastLocation ->
-                geoCodeLocation(lastLocation)
+                if (lastLocation != null) {
+                    geoCodeLocation(lastLocation)
+                } else {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.location_required),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         }
     }
