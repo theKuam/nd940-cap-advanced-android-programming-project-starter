@@ -2,6 +2,7 @@ package com.example.android.politicalpreparedness.di
 
 import com.example.android.politicalpreparedness.network.ApiProvider
 import com.example.android.politicalpreparedness.network.UrlProvider
+import com.example.android.politicalpreparedness.network.models.DateJsonAdapterFactory
 import com.example.android.politicalpreparedness.network.service.CivicService
 import com.example.android.politicalpreparedness.network.service.CountryService
 import com.example.android.politicalpreparedness.network.service.HeaderProvider
@@ -50,6 +51,7 @@ internal val clientModule = module {
 val networkModule = serviceModule + retrofitModule + clientModule
 
 private val moshi = Moshi.Builder()
+    .add(DateJsonAdapterFactory())
     .add(KotlinJsonAdapterFactory())
     .build()
 

@@ -3,8 +3,8 @@ package com.example.android.politicalpreparedness.ui.representative
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.politicalpreparedness.common.Result
-import com.example.android.politicalpreparedness.model.Representative
 import com.example.android.politicalpreparedness.network.models.Address
+import com.example.android.politicalpreparedness.network.models.Representative
 import com.example.android.politicalpreparedness.usecase.representative.GetRepresentativeUseCase
 import com.example.android.politicalpreparedness.usecase.representative.GetStatesUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -45,6 +45,10 @@ class RepresentativeViewModel(
     val state: StateFlow<String>
         get() = _state.asStateFlow()
 
+    private val _errorMessage = MutableStateFlow("")
+    val errorState: StateFlow<String>
+        get() = _errorMessage
+
     fun useMyLocation(address: Address?) {
         _address.value = address
     }
@@ -63,6 +67,8 @@ class RepresentativeViewModel(
                             if (state.value != "" && !states.value.contains(state.value)) {
                                 addCountryState()
                             }
+                        } else if (result is Result.Error) {
+                            _errorMessage.value = result.throwable.message.toString()
                         }
                     }
             }
@@ -83,6 +89,8 @@ class RepresentativeViewModel(
                     .collectLatest { result ->
                         if (result is Result.Success) {
                             _representatives.value = result.data
+                        } else if (result is Result.Error) {
+                            _errorMessage.value = result.throwable.message.toString()
                         }
                     }
             }
@@ -93,6 +101,28 @@ class RepresentativeViewModel(
         getCountryState(DEFAULT_COUNTRY)
     }
 
-    //TODO: Create function to get address from individual fields
+    fun onAddress1Changed(address1: CharSequence) {
+        _address.value?.line1 = address1.toString()
+    }
 
+    fun onAddress2Changed(address2: CharSequence) {
+        _address.value?.line2 = address2.toString()
+    }
+
+    fun onCityChanged(city: CharSequence) {
+        _address.value?.city = city.toString()
+    }
+
+    fun onZipChanged(zip: CharSequence) {
+        _address.value?.zip = zip.toString()
+    }
+
+    fun onStateChanged(position: Int) {
+        _state.value = states.value[position]
+        _address.value?.state = state.value
+    }
+
+    fun resetErrorState() {
+        _errorMessage.value = ""
+    }
 }

@@ -8,6 +8,7 @@ import android.location.Location
 import android.os.Build
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentActivity
@@ -24,6 +25,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -51,6 +53,20 @@ class RepresentativeFragment :
                             representativeListAdapter.submitList(it)
                         }
                     }
+
+                    launch {
+                        address.collectLatest {
+                            sharedViewModel.setSharedAddress(it)
+                        }
+                    }
+                    launch {
+                        errorState.collectLatest {
+                            if (it != "") {
+                                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+                                resetErrorState()
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -62,6 +78,7 @@ class RepresentativeFragment :
         binding.apply {
             btnSearch.setOnClickListener {
                 representativeViewModel.findMyRepresentatives()
+                hideKeyboard()
             }
             btnLocation.setOnClickListener {
                 getLocation()

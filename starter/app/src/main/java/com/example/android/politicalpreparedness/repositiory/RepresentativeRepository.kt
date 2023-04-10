@@ -1,7 +1,7 @@
 package com.example.android.politicalpreparedness.repositiory
 
 import com.example.android.politicalpreparedness.common.Result
-import com.example.android.politicalpreparedness.model.Representative
+import com.example.android.politicalpreparedness.network.models.Representative
 import com.example.android.politicalpreparedness.network.request.CountryRequest
 import com.example.android.politicalpreparedness.network.response.toRepresentativeList
 import com.example.android.politicalpreparedness.network.service.CivicService

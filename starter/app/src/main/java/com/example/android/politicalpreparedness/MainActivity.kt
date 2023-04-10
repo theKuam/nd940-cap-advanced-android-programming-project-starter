@@ -1,14 +1,28 @@
 package com.example.android.politicalpreparedness
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.android.politicalpreparedness.core.BaseActivity
 import com.example.android.politicalpreparedness.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-    override fun initObserver() {}
+    override fun initObserver() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                sharedViewModel.electionName.collect { name ->
+                    if (name != "") {
+                        binding.toolbar.title = name
+                    }
+                }
+            }
+        }
+    }
 
     override fun initAction() {}
 

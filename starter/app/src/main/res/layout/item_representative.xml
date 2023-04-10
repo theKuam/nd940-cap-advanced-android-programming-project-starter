@@ -7,7 +7,7 @@
 
         <variable
             name="representative"
-            type="com.example.android.politicalpreparedness.model.Representative" />
+            type="com.example.android.politicalpreparedness.network.models.Representative" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,11 +19,11 @@
             android:id="@+id/ivOfficialImage"
             android:layout_width="@dimen/small_image_size"
             android:layout_height="@dimen/small_image_size"
+            android:src="@drawable/ic_profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_profile"
-            app:profileImage="@{representative.official.photoUrl}"/>
+            app:profileImage="@{representative.official.photoUrl}" />
 
         <TextView
             android:id="@+id/txtOffice"

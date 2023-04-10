@@ -14,29 +14,12 @@ abstract class ElectionDatabase : RoomDatabase() {
     abstract val electionDao: ElectionDao
 
     companion object {
+        private const val databaseName = "election_database"
 
-        @Volatile
-        private var INSTANCE: ElectionDatabase? = null
-
-        fun getInstance(context: Context): ElectionDatabase {
-            synchronized(this) {
-                var instance = INSTANCE
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        ElectionDatabase::class.java,
-                        "election_database"
-                    )
-                        .fallbackToDestructiveMigration()
-                        .build()
-
-                    INSTANCE = instance
-                }
-
-                return instance
-            }
+        fun buildDatabase(context: Context): ElectionDatabase {
+            return Room.databaseBuilder(context, ElectionDatabase::class.java, databaseName)
+                .fallbackToDestructiveMigration()
+                .build()
         }
-
     }
-
 }

@@ -8,12 +8,9 @@
 
     <fragment
         android:id="@+id/launchFragment"
-        android:name="com.example.android.politicalpreparedness.launch.LaunchFragment"
+        android:name="com.example.android.politicalpreparedness.ui.launch.LaunchFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_launch">
-        <action
-            android:id="@+id/action_launchFragment_to_electionsFragment"
-            app:destination="@id/electionsFragment" />
         <action
             android:id="@+id/action_launchFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -27,26 +24,40 @@
     <fragment
         android:id="@+id/voterInfoFragment"
         android:name="com.example.android.politicalpreparedness.ui.election.VoterInfoFragment"
-        android:label="@string/voter_info_screen">
+        android:label="@string/voter_info_screen"
+        tools:layout="@layout/fragment_voter_info">
         <argument
             android:name="arg_election_id"
             app:argType="integer" />
         <argument
             android:name="arg_division"
-            app:argType="com.example.android.politicalpreparedness.network.models.Division" />
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/electionsFragment"
         android:name="com.example.android.politicalpreparedness.ui.election.ElectionsFragment"
-        android:label="@string/elections_screen" />
+        android:label="@string/elections_screen"
+        tools:layout="@layout/fragment_election">
+        <action
+            android:id="@+id/action_electionsFragment_to_voterInfoFragment"
+            app:destination="@id/voterInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.android.politicalpreparedness.ui.login.LoginFragment"
         android:label="@string/login_screen"
         tools:layout="@layout/fragment_login">
+        <argument
+            android:name="screenTo"
+            app:argType="integer" />
         <action
             android:id="@+id/action_loginFragment_to_representativeFragment"
             app:destination="@id/representativeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_electionsFragment"
+            app:destination="@id/electionsFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "515193662072",
+    "project_id": "ballotapp-5c6e9",
+    "storage_bucket": "ballotapp-5c6e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515193662072:android:80ecd390ca65d21cf7db8d",
+        "android_client_info": {
+          "package_name": "com.example.android.politicalpreparedness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515193662072-ep56gvn8a6ak1pnb5ivrtnohftg9lkp7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.politicalpreparedness",
+            "certificate_hash": "2e73fb468ad6467d17561771a9940c217bf756c6"
+          }
+        },
+        {
+          "client_id": "515193662072-kugnfjggkqs8c7r8jjovukqvjr793ljr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSDfUioN0rAMKfTTtLgZmLJov8v89zpsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515193662072-kugnfjggkqs8c7r8jjovukqvjr793ljr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

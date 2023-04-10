@@ -1,5 +1,7 @@
 package com.example.android.politicalpreparedness.di
 
+import com.example.android.politicalpreparedness.repositiory.ElectionRepository
+import com.example.android.politicalpreparedness.repositiory.ElectionRepositoryImpl
 import com.example.android.politicalpreparedness.repositiory.RepresentativeRepository
 import com.example.android.politicalpreparedness.repositiory.RepresentativeRepositoryImpl
 import org.koin.core.qualifier.named
@@ -14,4 +16,11 @@ val repositoryModule = module {
             get(qualifier = named(CoroutinesQualifier.IoDispatcher)),
         )
     } bind RepresentativeRepository::class
+    single {
+        ElectionRepositoryImpl(
+            get(),
+            get(),
+            get(qualifier = named(CoroutinesQualifier.IoDispatcher))
+        )
+    } bind ElectionRepository::class
 }

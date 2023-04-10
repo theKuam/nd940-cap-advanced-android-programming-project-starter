@@ -1,17 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Add node to connect Election ViewModel -->
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.android.politicalpreparedness.ui.election.ElectionsViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_margin"
         tools:context="com.example.android.politicalpreparedness.MainActivity">
 
-        <!-- TODO: Add Upcoming Election Recycler and Header -->
+        <TextView
+            android:id="@+id/txtUpcomingElections"
+            style="@style/MyTitle"
+            android:text="@string/upcoming_elections"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- TODO: Add Saved Election Recycler and Header -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvUpcomingElections"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/guidelineHalf"
+            app:layout_constraintTop_toBottomOf="@id/txtUpcomingElections" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineHalf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/txtSavedElections"
+            style="@style/MyTitle"
+            android:text="@string/saved_elections"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guidelineHalf" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSavedElections"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtSavedElections" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -12,6 +12,6 @@ val viewModelModule = module {
         SharedViewModel()
     }
     viewModel { RepresentativeViewModel(get(), get()) }
-    viewModel { ElectionsViewModel() }
-    viewModel { VoterInfoViewModel(get()) }
+    viewModel { ElectionsViewModel(get(), get()) }
+    viewModel { VoterInfoViewModel(get(), get(), get(), get()) }
 }
